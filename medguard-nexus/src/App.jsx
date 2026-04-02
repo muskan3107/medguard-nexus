@@ -102,7 +102,7 @@ export default function App() {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateRows: 'auto 1fr auto',
+      gridTemplateRows: 'auto 1fr 260px',
       gridTemplateColumns: '1fr 300px',
       height: '100vh',
       background: 'var(--bg)',
@@ -237,24 +237,21 @@ export default function App() {
       <div style={{
         gridColumn: '1', gridRow: '3',
         display: 'flex', alignItems: 'center',
-        gap: 0,
         background: 'linear-gradient(180deg, #0b1520 0%, #060a0e 100%)',
         borderTop: '1px solid var(--border)',
-        height: 190,
-        padding: '0 32px',
+        height: 260,
+        padding: '12px 40px',
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'visible',
       }}>
-        {/* Decorative corner marks */}
         <CornerMark pos="tl" /><CornerMark pos="tr" />
 
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'center', gap: 48 }}>
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 56 }}>
           <GaugePanel label="Behavioral Entropy" mode={gaugeMode} id="entropy" />
-          <div style={{ width: 1, background: 'var(--border)', alignSelf: 'stretch', margin: '16px 0' }} />
+          <div style={{ width: 1, background: 'var(--border)', height: 200 }} />
           <GaugePanel label="Network Desync"     mode={gaugeMode} id="desync"  />
         </div>
 
-        {/* Right side: threat level indicator */}
         <ThreatMeter phase={phase} />
       </div>
     </div>
@@ -302,24 +299,41 @@ function ThreatMeter({ phase }) {
     { label: 'NOMINAL',  color: '#00ff88', active: phase === 'idle' },
   ]
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginLeft: 32, minWidth: 120 }}>
-      <div style={{ fontFamily: 'var(--font-hud)', fontSize: '0.55rem', color: 'var(--text-dim)', letterSpacing: '0.2em', marginBottom: 4 }}>
+    <div style={{
+      display: 'flex', flexDirection: 'column', gap: 8,
+      marginLeft: 40, minWidth: 150,
+      padding: '16px 20px',
+      background: '#0a1018',
+      border: '1px solid var(--border)',
+      borderRadius: 8,
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-hud)', fontSize: '0.6rem',
+        color: 'var(--text-dim)', letterSpacing: '0.2em', marginBottom: 4,
+      }}>
         THREAT LEVEL
       </div>
       {levels.map((l, i) => (
-        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{
-            width: l.active ? 28 : 14, height: 4, borderRadius: 2,
+            width: l.active ? 32 : 16, height: 5, borderRadius: 3,
             background: l.active ? l.color : '#1a2a1a',
-            boxShadow: l.active ? `0 0 8px ${l.color}` : 'none',
-            transition: 'all 0.4s ease',
+            boxShadow: l.active ? `0 0 10px ${l.color}` : 'none',
+            transition: 'all 0.4s ease', flexShrink: 0,
           }} />
           <span style={{
-            fontFamily: 'var(--font-hud)', fontSize: '0.5rem',
+            fontFamily: 'var(--font-hud)', fontSize: '0.58rem',
             color: l.active ? l.color : '#2a3a2a',
             letterSpacing: '0.1em',
             transition: 'color 0.4s',
           }}>{l.label}</span>
+          {l.active && (
+            <span style={{
+              width: 6, height: 6, borderRadius: '50%',
+              background: l.color, boxShadow: `0 0 8px ${l.color}`,
+              animation: 'pulse 1s infinite', flexShrink: 0,
+            }} />
+          )}
         </div>
       ))}
     </div>

@@ -7,14 +7,14 @@ export default function AlertBox({ contained }) {
 
   return (
     <div style={{
-      position: "absolute", top: 14, left: "50%",
-      transform: "translateX(-50%)",
+      position: "absolute",
+      bottom: 16, left: 16,          // ← bottom-left, clear of the diagram
       background: `linear-gradient(135deg, ${bg}, #0b101800)`,
       backdropFilter: "blur(8px)",
       border: `1px solid ${color}55`,
       borderRadius: 8,
-      padding: "14px 24px",
-      minWidth: 380,
+      padding: "14px 20px",
+      width: 300,
       boxShadow: `0 0 40px ${shadow}, inset 0 1px 0 ${color}22`,
       animation: "fadeSlideIn 0.35s ease",
       zIndex: 10,
@@ -38,7 +38,7 @@ export default function AlertBox({ contained }) {
           {contained ? "NODE ISOLATED — CONTAINMENT ACTIVE" : "CRITICAL: RANSOMWARE DETECTED"}
         </div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", fontSize: "0.68rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "5px", fontSize: "0.68rem" }}>
         {[
           ["Source IP",     "192.168.1.5"],
           ["Target Node",   "ICU — Ward 3B"],

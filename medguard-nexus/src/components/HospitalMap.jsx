@@ -89,7 +89,7 @@ export default function HospitalMap({ phase }) {
   ]
 
   return (
-    <svg width="100%" height="100%" viewBox="-380 -60 1100 520" style={{ display:'block' }}>
+    <svg width="100%" height="100%" viewBox="-420 -80 1160 560" style={{ display:'block' }}>
       <defs>
         <filter id="gg"   x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         <filter id="ggb"  x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"   result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -152,14 +152,14 @@ export default function HospitalMap({ phase }) {
             {/* Main label */}
             <text x={c.x} y={c.y+2} textAnchor="middle"
               fontFamily="'Orbitron',sans-serif"
-              fontSize={isAdm ? 8 : 10} fontWeight="700"
-              fill={s.stroke} letterSpacing="1.8">
+              fontSize={isAdm ? 9 : 11} fontWeight="700"
+              fill={s.stroke} letterSpacing="2">
               {ward.label}
             </text>
             {/* Sub label */}
-            <text x={c.x} y={c.y+14} textAnchor="middle"
+            <text x={c.x} y={c.y+16} textAnchor="middle"
               fontFamily="'Share Tech Mono',monospace"
-              fontSize="7" fill={s.stroke} opacity="0.55" letterSpacing="1">
+              fontSize="8" fill={s.stroke} opacity="0.6" letterSpacing="1">
               {ward.sub}
             </text>
           </g>
